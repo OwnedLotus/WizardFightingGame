@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class CharController : MonoBehaviour
 {
     Rigidbody rb;
     public float speed;
@@ -24,8 +24,8 @@ public class CharacterController : MonoBehaviour
     {
         mHorizontal = Input.GetAxisRaw("Horizontal");
         mForward = Input.GetAxisRaw("Vertical");
-        move = new Vector3(mHorizontal, 0, mForward);
 
+        move = new Vector3(mHorizontal, 0, mForward);
         rb.AddForce(move);
     }
 
