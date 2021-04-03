@@ -14,10 +14,10 @@ public class CharacterController : MonoBehaviour
     private float mHorizontal, mForward;
 
     // Start is called before the first frame update
-  /*  void Awake() 
+ void Awake() 
     {
         rb = GetComponent<Rigidbody>();
-    }*/
+    }
 
     // Update is called once per frame
     void FixedUpdate()
