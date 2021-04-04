@@ -14,7 +14,8 @@ public class CharController : MonoBehaviour
     RaycastHit hit;
     private float mHorizontal, mForward;
     bool isGrounded = false;
-
+    public Transform player;
+    public float mouseSpeed = 3f;
     // Start is called before the first frame update
  void Awake() 
     {
@@ -24,35 +25,31 @@ public class CharController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         mHorizontal = Input.GetAxisRaw("Horizontal");
         mForward = Input.GetAxisRaw("Vertical");
 
-        move = new Vector3(mHorizontal, 0, mForward);
+        move = new Vector3(mHorizontal * speed, 0, mForward * speed);
         rb.AddForce(move);
         
-        if (isGrounded)
+        
+        if(isGrounded)
         {
-            jump = jumpMax;
-        }
-
-        if (Input.GetKey(KeyCode.Space) && jump != 0)
-        {
-            if (!isGrounded)
+            if (Input.GetKey(KeyCode.Space))
             {
-                jump--;
+                jumpForce = new Vector3(0f, 50f, 0f);
+                rb.AddForce(jumpForce);
             }
-
-            jumpForce = new Vector3(0f, 50f, 0f);
-            rb.AddForce(jumpForce);
         }
+        //FacePlayer();
     }
 
-    private void Update() 
+   /* private void FacePlayer() 
     {
+        rb.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
         
         
-        
-    }
+    }*/
 
     /*          For later Flying super maybe
     private bool Jump(RaycastHit hit)
@@ -72,7 +69,7 @@ public class CharController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
-            print("Grounded");
+            //print("Grounded");
         }
     }
 
@@ -81,7 +78,7 @@ public class CharController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
-            print("Not Grounded");
+            //print("Not Grounded");
         }
     }
 }
