@@ -6,7 +6,7 @@ public class CharController : MonoBehaviour
 {
     Rigidbody rb;
     public float speed;
-    public int jumpMax, topSpeed;
+    public int jumpMaxNU, topSpeedNU; //Not Utilized behavior
     private int jump = 0;
     Vector3 move;
     public Vector3 jumpForce;
