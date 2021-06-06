@@ -16,7 +16,7 @@ public class CharController : MonoBehaviour
     public Transform rayStart;
     RaycastHit hit;
     private float mHorizontal, mForward;
-    bool isGrounded = false;
+    //bool isGrounded = false;
     public Transform player;
     public float mouseSpeed = 3f;
 
@@ -62,8 +62,8 @@ public class CharController : MonoBehaviour
 
         return isGrounded;
     }
-    */
-/*
+    
+
     private void OnCollisionEnter(Collision other) 
     {
         if (other.gameObject.CompareTag("Ground"))
