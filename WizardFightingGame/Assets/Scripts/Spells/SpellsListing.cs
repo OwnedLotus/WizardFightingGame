@@ -2,9 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class SpellsListing : MonoBehaviour
 {
-    List<SpellsAttack> LspellsAttack = new List<SpellsAttack>();
-    List<SpellsStatus> LspellsStatus = new List<SpellsStatus>();
+
+    public int numberOfSpells = 1;
+
+    ///<summary>
+    /// Global Spells initialization
+    ///</summary>
+    
+
+
+    private void Start() 
+    {
+        
+        SpellsAttack[] attackSpells = new SpellsAttack[numberOfSpells];
+        SpellsStatus[] statusSpells = new SpellsStatus[numberOfSpells];
+        
+    }
+    
+    
 
 }

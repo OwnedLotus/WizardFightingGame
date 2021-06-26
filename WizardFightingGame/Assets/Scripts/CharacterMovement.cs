@@ -4,28 +4,40 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+
     public CharacterController characterController;
+    public Transform playerTransform;
+
+
     public float jumpForce = 10f;
     public float baseSpeedMultiplyer = 1f;
     public float runSpeedMultiplyer = 1f;
     public float gravityStrength = 1f;
-    private float mX, mZ, verticalMovement;
+    public float mouseAcceleration = 1f;
+    
+
+    private float moveX, moveZ, verticalMovement, mouseHorizontal, mouseVertical;
     private float runSpeed = 1f;
     private Vector3 moveSpeed;
+    private Quaternion currentRotation, lookAt;
+    
 
+    
     // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        playerTransform = GetComponent<Transform>();
     }
 
     void FixedUpdate()
     {
-        mX = Input.GetAxis("Horizontal");
-        mZ = Input.GetAxis("Vertical");
+        moveX = Input.GetAxisRaw("Horizontal");
+        moveZ = Input.GetAxisRaw("Vertical");
+        
 
-        Debug.Log("mX = " + mX.ToString());
-        Debug.Log("mZ = " + mZ.ToString());
+        Debug.Log("mX = " + moveX.ToString());
+        Debug.Log("mZ = " + moveZ.ToString());
 
         if (characterController.isGrounded == true)
         {
@@ -42,8 +54,20 @@ public class CharacterMovement : MonoBehaviour
         }
 
 
-        moveSpeed = new Vector3(mX * baseSpeedMultiplyer * runSpeed, verticalMovement, mZ * baseSpeedMultiplyer * runSpeed);
+        moveSpeed = new Vector3(moveX * baseSpeedMultiplyer * runSpeed, verticalMovement, moveZ * baseSpeedMultiplyer * runSpeed);
         characterController.Move(moveSpeed);
+
+        
+        mouseHorizontal = Input.GetAxisRaw("Mouse X");
+        mouseVertical = Input.GetAxisRaw("Mouse Y");
+
+        currentRotation = playerTransform.rotation;
+        Quaternion targetRotation = Quaternion.Euler(moveSpeed.x, moveSpeed.y, 0f);
+
+        lookAt = Quaternion.Lerp(currentRotation, targetRotation, mouseAcceleration);
+
+        playerTransform.rotation = Quaternion.RotateTowards(currentRotation,lookAt,360);
+        
 
     }
 
