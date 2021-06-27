@@ -6,7 +6,9 @@ using UnityEngine;
 public class SpellsListing : MonoBehaviour
 {
 
+    #region Variables
     public int numberOfSpells = 1;
+    #endregion
 
     ///<summary>
     /// Global Spells initialization
@@ -16,7 +18,6 @@ public class SpellsListing : MonoBehaviour
 
     private void Start() 
     {
-        
         SpellsAttack[] attackSpells = new SpellsAttack[numberOfSpells];
         SpellsStatus[] statusSpells = new SpellsStatus[numberOfSpells];
         

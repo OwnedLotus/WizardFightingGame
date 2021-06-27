@@ -36,20 +36,20 @@ public class CharacterMovement : MonoBehaviour
         moveZ = Input.GetAxisRaw("Vertical");
         
 
-        Debug.Log("mX = " + moveX.ToString());
-        Debug.Log("mZ = " + moveZ.ToString());
+        //Debug.Log("moveX = " + moveX.ToString());
+        //Debug.Log("moveZ = " + moveZ.ToString());
 
         if (characterController.isGrounded == true)
         {
             if (Input.GetKeyDown("space"))
             {
-                Debug.Log("Jumped!");
+                //Debug.Log("Jumped!");
                 verticalMovement = jumpForce;
             }
         }
         else
         {
-            Debug.Log("AirBorne");
+            //Debug.Log("AirBorne");
             verticalMovement = -gravityStrength;
         }
 
@@ -60,14 +60,6 @@ public class CharacterMovement : MonoBehaviour
         
         mouseHorizontal = Input.GetAxisRaw("Mouse X");
         mouseVertical = Input.GetAxisRaw("Mouse Y");
-
-        currentRotation = playerTransform.rotation;
-        Quaternion targetRotation = Quaternion.Euler(moveSpeed.x, moveSpeed.y, 0f);
-
-        lookAt = Quaternion.Lerp(currentRotation, targetRotation, mouseAcceleration);
-
-        playerTransform.rotation = Quaternion.RotateTowards(currentRotation,lookAt,360);
-        
 
     }
 
